@@ -28,7 +28,7 @@ private:
     void Withdraw();
 
     // 現在の状態を表すメンバ関数ポインタ
-    void (Enemy::*currentState)();
+    void (Enemy::* currentState)();
 };
 
 #endif // ENEMY_H
