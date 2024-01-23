@@ -5,12 +5,6 @@ Enemy::Enemy() {
     // ‰Šúó‘Ô‚ğİ’è
     currentState = &Enemy::Approach;
 }
-
-// Destructor
-Enemy::~Enemy() {
-    // ‰½‚©‚µ‚ç‚Ì‰ğ•úˆ—‚ª‚ ‚ê‚Î‚±‚±‚É‹Lq
-}
-
 // ó‘Ô‘JˆÚŠÖ”
 void Enemy::TransitionTo(void (Enemy::*newState)()) {
     currentState = newState;
@@ -21,29 +15,28 @@ void Enemy::Update() {
     (this->*currentState)();
 }
 
-// ó‘ÔŠÖ”FÚ‹ß
+//Ú‹ß
 void Enemy::Approach() {
-    std::cout << "Ú‹ß" << std::endl;
-    // ‰½‚ç‚©‚Ìˆ—...
-
-    // ËŒ‚ó‘Ô‚É‘JˆÚ
+    printf("Ú‹ß\n");
     TransitionTo(&Enemy::Shoot);
 }
 
-// ó‘ÔŠÖ”FËŒ‚
+//ËŒ‚
 void Enemy::Shoot() {
-    std::cout << "ËŒ‚" << std::endl;
-    // ‰½‚ç‚©‚ÌËŒ‚ˆ—...
-
-    // —£’Eó‘Ô‚É‘JˆÚ
+    printf("ËŒ‚\n");
     TransitionTo(&Enemy::Withdraw);
 }
 
-// ó‘ÔŠÖ”F—£’E
+//—£’E
 void Enemy::Withdraw() {
-    std::cout << "—£’E" << std::endl;
-    // ‰½‚ç‚©‚Ì—£’Eˆ—...
-
-    // Ú‹ßó‘Ô‚É‘JˆÚiƒTƒCƒNƒ‹j
+    printf("—£’E\n");
+    
     TransitionTo(&Enemy::Approach);
+}
+
+// ŠÖ”ƒe[ƒuƒ‹‚Ì‰Šú‰»
+void Enemy::spFuncTable() {
+    stateFunctions[0] = &Enemy::Approach;
+    stateFunctions[1] = &Enemy::Shoot;
+    stateFunctions[2] = &Enemy::Withdraw;
 }
