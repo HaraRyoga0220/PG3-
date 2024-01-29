@@ -24,7 +24,7 @@ int main() {
     // double型のインスタンス
     MinFinder<double> doubleMinFinder;
     double doubleResult = doubleMinFinder.Min(10.5, 8.9);
-    printf("Min:10.5 or 8.9 <double>: %lf\n", doubleResult);
+    printf("Min:10.5 or 8.9 <double>: %lf\n", doubleResult);;
 
     return 0;
 }
