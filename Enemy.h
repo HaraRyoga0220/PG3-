@@ -1,36 +1,42 @@
-#ifndef ENEMY_H
-#define ENEMY_H
-#include <iostream>
-
-class Enemy {
+ï»¿#pragma once
+#include "Phase.h"
+class Enemy
+{
 public:
-   
-    enum State {
-        APPROACH,
-        SHOOT,
-        WITHDRAW
-    };
 
-    Enemy();
+	/// <summary>
+	/// ÂXÂV
+	/// </summary>
+	void Update();
 
-    // ó‘Ô‘JˆÚŠÖ”
-    void TransitionTo(State newState);
 
-    // XVŠÖ”
-    void Update();
+	bool GetCount() { return count; }
 
 private:
-    // ó‘ÔŠÖ”FÚ‹ß
-    void Approach();
 
-    // ó‘ÔŠÖ”FËŒ‚
-    void Shoot();
+	/// <summary>
+	/// ÂÃšâ€¹ÃŸ
+	/// </summary>
+	void Approach();
 
-    // ó‘ÔŠÖ”F—£’E
-    void Withdraw();
+	/// <summary>
+	/// Å’â€šâ€šÃ‚
+	/// </summary>
+	void Shooting();
 
-   
-    State currentState;
+	/// <summary>
+	/// â€”Â£â€™E
+	/// </summary>
+	void Leave();
+
+
+
+private:
+
+	static void (Enemy::* fhaseTable[])();
+
+	Phase phase_ = Phase::APPROACH;
+
+	bool count = false;
+
 };
-
-#endif // ENEMY_H

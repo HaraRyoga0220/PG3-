@@ -1,32 +1,46 @@
 #include "Enemy.h"
+#include <Windows.h>
+#include <stdio.h>
 
-Enemy::Enemy() {
-    currentState = APPROACH;
+
+void (Enemy::* Enemy::fhaseTable[])() = {
+	&Enemy::Approach, //0
+	&Enemy::Shooting, //1
+	&Enemy::Leave	  //2
+};
+
+
+void Enemy::Update()
+{
+
+	(this->*fhaseTable[static_cast<size_t>(phase_)])();
+
 }
 
-void Enemy::TransitionTo(State newState) {
-    currentState = newState;
+void Enemy::Approach()
+{
+	printf("接近\n");
+
+	Sleep(3 * 1000);
+
+	phase_ = Phase::SHOOTING;
+
 }
 
-void Enemy::Update() {
-    //ポインタテーブル
-    void (Enemy::*spFuncTable[])() = {&Enemy::Approach, &Enemy::Shoot, &Enemy::Withdraw};
+void Enemy::Shooting()
+{
+	printf("射撃\n");
 
-    //ポインタ呼び出し
-    (this->*spFuncTable[currentState])();
+	Sleep(3 * 1000);
+
+	phase_ = Phase::LEAVE;
+
 }
 
-void Enemy::Approach() {
-    std::cout << "接近" << std::endl;
-    TransitionTo(SHOOT);
-}
+void Enemy::Leave()
+{
+	printf("離脱\n");
 
-void Enemy::Shoot() {
-    std::cout << "射撃" << std::endl;
-    TransitionTo(WITHDRAW);
-}
+	count = true;
 
-void Enemy::Withdraw() {
-    std::cout << "離脱" << std::endl;
-    TransitionTo(APPROACH);
 }

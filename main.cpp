@@ -1,12 +1,14 @@
+#include <stdio.h>
 #include "Enemy.h"
 
 int main() {
-    Enemy enemy;
 
-    
-    for (int i = 0; i < 3; ++i) {
-        enemy.Update();
-    }
+	Enemy* enemy_ = new Enemy;
 
-    return 0;
+	while (enemy_->GetCount() == false) {
+		enemy_->Update();
+	}
+
+
+	return 0;
 }
