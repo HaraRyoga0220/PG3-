@@ -4,7 +4,7 @@
 #include <list>
 
 int main(void) {
-	SetConsoleOutputCP(65001);
+	SetConsoleOutputCP(65001);;
 
 	std::list<const char*> yamanoteStationName = {
 		"Tokyo",
